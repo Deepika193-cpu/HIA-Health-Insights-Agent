@@ -1,0 +1,11 @@
+[server]
+maxUploadSize = 20
+fileWatcherType = "none"
+
+[theme]
+base = "light"
+primaryColor = "#1976D2"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4F9FF"
+textColor = "#173049"
+font = "sans serif"
