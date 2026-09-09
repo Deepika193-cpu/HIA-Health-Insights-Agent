@@ -29,8 +29,16 @@ class SessionManager:
         st.session_state.last_activity = datetime.now()
         
         # Validate token and user data
+                # Validate token and user data
         if 'user' in st.session_state:
             user_data = st.session_state.auth_service.validate_session_token()
+            if not user_data:
+                # A single failure can be a transient network hiccup (e.g. right
+                # after a paused Supabase project wakes up) rather than a truly
+                # invalid session — retry once before logging the user out.
+                import time
+                time.sleep(1)
+                user_data = st.session_state.auth_service.validate_session_token()
             if not user_data:
                 SessionManager.clear_session_state()
                 st.error("Invalid session. Please log in again.")

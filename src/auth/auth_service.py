@@ -1,8 +1,13 @@
 import streamlit as st
 from supabase import create_client
-from datetime import datetime
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 import time
 import re
+
+# Session titles are shown to the user, so generate them in India time
+# rather than the server's local time (which is UTC on most cloud hosts).
+IST = ZoneInfo("Asia/Kolkata")
 
 
 class AuthService:
@@ -162,7 +167,7 @@ class AuthService:
 
     def create_session(self, user_id, title=None):
         try:
-            current_time = datetime.now()
+            current_time = datetime.now(timezone.utc).astimezone(IST)
             default_title = f"{current_time.strftime('%d-%m-%Y')} | {current_time.strftime('%H:%M:%S')}"
 
             session_data = {

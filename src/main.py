@@ -68,28 +68,24 @@ def render_how_it_works():
                 unsafe_allow_html=True,
             )
 
-
 def render_feature_highlights():
     """Showcase what the app can do, in everyday language (no technical jargon)."""
     st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
     cards = [
         (
             "🎯",
-            "Guidance tailored to you",
-            "Pick a general overview, or a focused look at heart health, "
-            "blood sugar & metabolism, or nutrition — whichever matters most to you.",
+            "Made for you",
+            "See a full overview, or a closer look at your heart, sugar, or diet.",
         ),
         (
             "⚡",
-            "Fast, reliable answers",
-            "We automatically use the best available AI model to answer you, "
-            "and quietly try a backup if the first one is busy — so you're rarely left waiting.",
+            "Never stuck waiting",
+            "If one AI is busy, we switch to another right away.",
         ),
         (
             "💬",
-            "Ask anything about your results",
-            "Chat with HIA about your specific report — answers are grounded "
-            "in your actual numbers, not generic guesses.",
+            "Ask us anything",
+            "Confused by a term? Just ask, and we'll explain it simply.",
         ),
     ]
     cols = st.columns(3)
@@ -97,10 +93,10 @@ def render_feature_highlights():
         with col:
             st.markdown(
                 f"""
-                <div class="hia-card" style="min-height: 180px;">
+                <div class="hia-card" style="height: 100%; box-sizing: border-box; display: flex; flex-direction: column;">
                     <div style="font-size: 1.6rem;">{icon}</div>
                     <h4 style="margin: 0.4rem 0;">{title}</h4>
-                    <p style="color: #5B7186; font-size: 0.9em;">{desc}</p>
+                    <p style="color: #5B7186; font-size: 0.9em; margin: 0;">{desc}</p>
                 </div>
                 """,
                 unsafe_allow_html=True,
